@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-repository-rag-assistant
+  labels:
+    app: github-repository-rag-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: github-repository-rag-assistant
+  template:
+    metadata:
+      labels:
+        app: github-repository-rag-assistant
+    spec:
+      containers:
+        - name: api
+          image: github-repository-rag-assistant:local
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /v1/readyz
+              port: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: github-repository-rag-assistant
+spec:
+  selector:
+    app: github-repository-rag-assistant
+  ports:
+    - port: 80
+      targetPort: 8080
