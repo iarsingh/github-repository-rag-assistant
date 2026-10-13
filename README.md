@@ -1,5 +1,12 @@
 # GitHub Repository RAG Assistant
 
+## Overview
+
+A beginner RAG exercise that answers questions only from a tiny local corpus. The `POST /ask` endpoint splits the question into words, compares them with the stored passages, and refuses to answer when the overlap is too small rather than guessing. A versioned `/v1` ops API adds workspaces, tenant isolation, job approval and audit records.
+
+- **Built with:** Python, pytest, Docker, GitHub Actions
+- **Scope:** Beginner RAG exercise run locally; it calls no hosted model and refuses production apply.
+
 <!-- project-guide:start -->
 ## Project guide
 
